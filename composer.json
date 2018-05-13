@@ -10,13 +10,17 @@
     "behat/behat": "3.*"
   },
   "autoload": {
+    "classmap": [
+      "src/"
+    ],
     "psr-4": {
-      "Sheypoor\\Miniurl\\": "src/"
+
+      "Miniurl\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Sheypoor\\Miniurl\\Tests\\": "tests/"
+      "Miniurl\\Tests\\": "tests/"
     }
   }
 }
