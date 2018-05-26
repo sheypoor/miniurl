@@ -18,7 +18,6 @@ class ShortUrl
     public function __construct($storage , UrlValidator $urlValidator)
     {
         $this->storage = $storage;
-
         $this->urlValidator = $urlValidator;
     }
 

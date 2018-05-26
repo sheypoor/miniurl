@@ -13,15 +13,13 @@ class ShortUrlTest extends TestCase
 {
     private $shortUrl;
     private $redis;
-
-    private $config =
-        [
-        'baseUrl' => 'http://sheypoor.com',
-        'database' => 'redis',
-        'host' => 'localhost',
-        'port' => 6379,
-        'password' => null
-        ];
+    private $config =[
+                        'baseUrl' => 'http://sheypoor.com',
+                        'database' => 'redis',
+                        'host' => 'localhost',
+                        'port' => 6379,
+                        'password' => null
+                     ];
 
     public function setUp() :void
     {

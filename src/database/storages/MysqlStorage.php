@@ -8,10 +8,10 @@ class MysqlStorage implements StorageInterface
 
     private $config;
     private $client;
+
     public function __construct($config,$client)
     {
         $this->config = $config;
-
         $this->client = $client;
     }
 
