@@ -41,9 +41,11 @@ class ShortUrlTest extends TestCase
 
     public function urlDataProvider() :array {
         return [
-            ['https://www.sheypoor.com/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/%DA%A9%D8%B3%D8%A8-%DA%A9%D8%A7%D8%B1','0503acb8e8'],
-            ['https://www.sheypoor.com/%DA%A9%D9%BE%D8%B3%D9%88%D9%84-%D9%BE%DB%8C%DA%A9%D9%86%DB%8C%DA%A9-52836998.html','7a3c06e576'],
-            ['https://www.sheypoor.com/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/%D9%84%D9%88%D8%A7%D8%B2%D9%85-%D8%AE%D8%A7%D9%86%DA%AF%DB%8C','1ded24c6b6'],
+            ['https://www.sheypoor.com/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/%DA%A9%D8%B3%D8%A8-%DA%A9%D8%A7%D8%B1',$this->config['baseUrl']."/".'0503acb8e8'],
+            ['https://www.sheypoor.com/%DA%A9%D9%BE%D8%B3%D9%88%D9%84-%D9%BE%DB%8C%DA%A9%D9%86%DB%8C%DA%A9-52836998.html',$this->config['baseUrl']."/".'7a3c06e576'],
+            ['https://www.sheypoor.com/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/%D9%84%D9%88%D8%A7%D8%B2%D9%85-%D8%AE%D8%A7%D9%86%DA%AF%DB%8C',$this->config['baseUrl']."/".'1ded24c6b6'],
+            ['https://www.sheypoor.com/%D8%A7%DB%8C%A7%D9%86/%D9%84%D9%88%D8%A7%D8%B2%D9%85-%D8%AE%D8%A7%D9%86%DA%AF%DB%8C',null ],
+            ['sheypoor.com/%DA%A9%D9%BE%D8%B3%D9%88%D9%84-%D9%BE%DB%8C%DA%A9%D9%86%DB%8C%DA%A9-52836998.html',null ],
         ];
     }
 
@@ -56,7 +58,7 @@ class ShortUrlTest extends TestCase
     public function testInsertShortCodeInDataBase($url, $hash) :void
     {
 
-        $this->assertEquals($this->config['baseUrl']."/".$hash, $this->shortUrl->insertShortCodeInDataBase($url));
+        $this->assertEquals($hash, $this->shortUrl->insertShortCodeInDataBase($url));
     }
 
 

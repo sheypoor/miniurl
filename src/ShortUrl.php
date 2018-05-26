@@ -70,12 +70,18 @@ class ShortUrl
      * @param string $url
      * @return string
      */
-    public function insertShortCodeInDataBase(string $url) :string
+    public function insertShortCodeInDataBase(string $url) :?string
     {
 
-        if ($this->createRepetitiveHash($url) != false) {
-            return $this->storage->store($this->createRepetitiveHash($url),$url) ;
+        $hashUrl = $this->createRepetitiveHash($url);
+
+
+        if (!empty($hashUrl)) {
+
+            return $this->storage->store($this->createRepetitiveHash($url),$url);
         }
+
+        return null;
 
     }
 
@@ -84,13 +90,14 @@ class ShortUrl
      * @param string $url
      * @return bool|string
      */
-    private function createRepetitiveHash(string $url) :string
+    private function createRepetitiveHash(string $url) :?string
     {
 
         if ($this->urlValidator::validateUrl($url)) {
             return substr(sha1($url), 0, 10);
         }
 
+        return null ;
     }
 
 }
