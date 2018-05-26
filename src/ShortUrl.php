@@ -2,10 +2,6 @@
 
 namespace Miniurl;
 
-use Miniurl\Database\StorageFactory;
-
-
-
 class ShortUrl
 {
     protected $storage;
