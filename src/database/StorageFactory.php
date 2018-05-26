@@ -11,12 +11,11 @@ class StorageFactory extends AbstractStorageFactory
     const MYSQL = 'mysql';
 
 
-    public static function getStorage($config)
+    public static function getStorage(array $config)
     {
-        $database = NULL;
-        switch ($config['database']) {
+        $database = null;
+        switch ($config['databaseType']) {
             case self::REDIS:
-                unset($config['database']);
                 Predis\Autoloader::register();
                 $database = new RedisStorage($config, new Predis\Client($config));
                 break;

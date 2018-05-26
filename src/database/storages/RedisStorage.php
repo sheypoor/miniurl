@@ -2,7 +2,7 @@
 namespace Miniurl\Database\Storage;
 
 use Miniurl\Database\StorageInterface;
-
+use Predis;
 
 class RedisStorage implements StorageInterface
 {
@@ -10,14 +10,14 @@ class RedisStorage implements StorageInterface
     protected $client;
     protected $baseUrl;
 
-    public function __construct($config, $client)
+    public function __construct(array $config, Predis\Client $client)
     {
         $this->baseUrl = $config['baseUrl'];
         $this->client = $client;
 
     }
 
-    public function store($hash, $url) :string
+    public function store(string $hash, string $url) :string
     {
         if (empty($this->checkHash($hash))) {
 
@@ -31,7 +31,7 @@ class RedisStorage implements StorageInterface
         return $this->baseUrl."/".$hash;
     }
 
-    public function getCount($hash) :string
+    public function getCount(string $hash) : ?string
     {
         return $this->client->hget($hash, 'count');
     }
@@ -41,18 +41,18 @@ class RedisStorage implements StorageInterface
         // TODO: Implement update() method.
     }
 
-    public function incCount($hash) :void
+    public function incCount(string $hash) :void
     {
         $this->client->hincrby($hash, 'count', 1);
     }
 
 
-    public function getUrlByHash($hash) :string
+    public function getUrlByHash(string $hash) : ?string
     {
         return $this->client->hget($hash, 'url');
     }
 
-    public function checkHash($hash) :array
+    public function checkHash(string $hash) :array
     {
         return $this->client->hgetall($hash);
     }

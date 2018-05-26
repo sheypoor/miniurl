@@ -9,7 +9,7 @@ class UrlValidator implements Validator
      * @param $url
      * @return mixed
      */
-    private static function validateUrlFormat($url)  {
+    private static function validateUrlFormat(string $url)  {
         return filter_var($url, FILTER_VALIDATE_URL,
             FILTER_FLAG_PATH_REQUIRED);
 
@@ -28,7 +28,7 @@ class UrlValidator implements Validator
      * @param $url
      * @return bool
      */
-    private static function verifyUrlExists($url) :bool {
+    private static function verifyUrlExists(string $url) :bool {
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -50,7 +50,7 @@ class UrlValidator implements Validator
      * @param $url
      * @return bool
      */
-    public static function validateUrl($url) :bool {
+    public static function validateUrl(string $url) :bool {
         if (self::validateUrlFormat($url) == false) {
             return false;
         }
