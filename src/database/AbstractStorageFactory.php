@@ -3,5 +3,5 @@ namespace Miniurl\Database;
 
 abstract class AbstractStorageFactory
 {
-    abstract function getStorage($param,$config);
+    abstract static function getStorage($config);
 }

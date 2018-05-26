@@ -8,14 +8,11 @@ class MysqlStorage implements StorageInterface
 
     private $config;
     private $client;
-    public function __construct($config)
+    public function __construct($config,$client)
     {
         $this->config = $config;
 
-        /*Predis\Autoloader::register();
-        $this->client = new Predis\Client($config);*/
-
-        //TODO Mysql Connection
+        $this->client = $client;
     }
 
 
