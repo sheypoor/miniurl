@@ -3,20 +3,24 @@
   "description": "Simple Url Shortener",
   "require": {
     "PHP": "^7.1",
-    "predis/predis": "^1.1"
+    "predis/predis": "^1.1",
+    "m6web/redis-mock": "~2.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^7",
     "behat/behat": "3.*"
   },
   "autoload": {
+    "classmap": [
+      "src/"
+    ],
     "psr-4": {
-      "Sheypoor\\Miniurl\\": "src/"
+      "Miniurl\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Sheypoor\\Miniurl\\Tests\\": "tests/"
+      "Miniurl\\Tests\\": "tests/"
     }
   }
 }
