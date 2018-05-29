@@ -47,7 +47,8 @@ class RedisStorage implements StorageInterface
 
             return 'Hash Does NOT Exist';
         }
-        return $this->client->hincrby($hash, 'count', 1);
+        $this->client->hincrby($hash, 'count', 1);
+        return null;
     }
 
 
