@@ -25,10 +25,11 @@ class ShortUrl
 
     /**
      * @param string $hashKey
+     * @return null|string
      */
-    public function increaseHashCount (string $hashKey) :void
+    public function increaseHashCount (string $hashKey) : ?string
     {
-        $this->storage->incCount($hashKey);
+        return $this->storage->incCount($hashKey);
 
     }
 

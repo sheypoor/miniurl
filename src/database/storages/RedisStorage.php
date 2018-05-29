@@ -41,9 +41,13 @@ class RedisStorage implements StorageInterface
         // TODO: Implement update() method.
     }
 
-    public function incCount(string $hash) :void
+    public function incCount(string $hash) : ?string
     {
-        $this->client->hincrby($hash, 'count', 1);
+        if (empty($this->checkHash($hash))) {
+
+            return 'Hash Does NOT Exist';
+        }
+        return $this->client->hincrby($hash, 'count', 1);
     }
 
 
