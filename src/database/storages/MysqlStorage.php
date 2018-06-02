@@ -9,19 +9,19 @@ class MysqlStorage implements StorageInterface
     private $config;
     private $client;
 
-    public function __construct($config,$client)
+    public function __construct($config, $client)
     {
         $this->config = $config;
         $this->client = $client;
     }
 
 
-    public function store($hash, $url)
+    public function store(string $hash, string $url) :string
     {
         // TODO: Implement store() method.
     }
 
-    public function getCount($hash)
+    public function getCount(string $hash) :?string
     {
         // TODO: Implement getCount() method.
     }
@@ -31,17 +31,17 @@ class MysqlStorage implements StorageInterface
         // TODO: Implement update() method.
     }
 
-    public function incCount($hash)
+    public function incCount(string $hash) :?string
     {
         // TODO: Implement incCount() method.
     }
 
-    public function getUrlByHash($hash)
+    public function getUrlByHash(string $hash) :?string
     {
         // TODO: Implement getUrlByHash() method.
     }
 
-    public function checkHash($hash)
+    public function checkHash(string $hash) :array
     {
         // TODO: Implement checkHash() method.
     }

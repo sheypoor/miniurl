@@ -18,7 +18,8 @@ class UrlTest extends TestCase
         unset($this->url);
     }
 
-    public function urlDataProvider() :array {
+    public function urlDataProvider() :array
+    {
         return array(
             array('https://www.sheypoor.com/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/%DA%A9%D8%B3%D8%A8-%DA%A9%D8%A7%D8%B1',true),
             array('https://www.sheypoor.com/%DA%A9%D9%BE%D8%B3%D9%88%D9%84-%D9%BE%DB%8C%DA%A9%D9%86%DB%8C%DA%A9-52836998.html',true),
@@ -32,9 +33,8 @@ class UrlTest extends TestCase
     /**
      * @dataProvider urlDataProvider
      */
-    public function testValidateUrl($url,$exception) :void
+    public function testValidateUrl($url, $exception) :void
     {
-        $this->assertEquals($exception,$this->url->validateUrl($url));
+        $this->assertEquals($exception, $this->url->validateUrl($url));
     }
-
 }
