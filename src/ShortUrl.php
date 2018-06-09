@@ -17,7 +17,7 @@ class ShortUrl
      * @internal param $config
      * @internal param StorageInterface $storage
      */
-    public function __construct(StorageInterface $storage , UrlValidator $urlValidator)
+    public function __construct(StorageInterface $storage, UrlValidator $urlValidator)
     {
         $this->storage = $storage;
         $this->urlValidator = $urlValidator;
@@ -25,21 +25,20 @@ class ShortUrl
 
     /**
      * @param string $hashKey
+     * @return null|string
      */
-    public function increaseHashCount (string $hashKey) :void
+    public function increaseHashCount(string $hashKey) : ?string
     {
-        $this->storage->incCount($hashKey);
-
+        return $this->storage->incCount($hashKey);
     }
 
     /**
      * @param string $hashKey
      * @return string
      */
-    public function getHashStats (string $hashKey) : ?string
+    public function getHashStats(string $hashKey): ?string
     {
         return $this->storage->getCount($hashKey);
-
     }
 
     /**
@@ -62,7 +61,6 @@ class ShortUrl
     public function getUrl(string $hashKey) : ?string
     {
         return $this->storage->getUrlByHash($hashKey);
-
     }
 
 
@@ -72,19 +70,14 @@ class ShortUrl
      */
     public function insertShortCodeInDataBase(string $url) :?string
     {
-
         $hashUrl = $this->createRepetitiveHash($url);
 
-
         if (!empty($hashUrl)) {
-
-            return $this->storage->store($this->createRepetitiveHash($url),$url);
+            return $this->storage->store($this->createRepetitiveHash($url), $url);
         }
 
         return null;
-
     }
-
 
     /**
      * @param string $url
@@ -92,13 +85,10 @@ class ShortUrl
      */
     private function createRepetitiveHash(string $url) :?string
     {
-
         if ($this->urlValidator::validateUrl($url)) {
             return substr(sha1($url), 0, 10);
         }
 
         return null ;
     }
-
 }
-

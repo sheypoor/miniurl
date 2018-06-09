@@ -31,7 +31,7 @@ class ShortUrlTest extends TestCase
             ->setConstructorArgs(array($this->config, $myRedisMockClass))
             ->getMock();
 
-        $this->shortUrl = new ShortUrl($this->redis , new UrlValidator());
+        $this->shortUrl = new ShortUrl($this->redis, new UrlValidator());
     }
 
     public function tearDown() :void
@@ -39,7 +39,8 @@ class ShortUrlTest extends TestCase
         unset($this->shortUrl);
     }
 
-    public function urlDataProvider() :array {
+    public function urlDataProvider() :array
+    {
         return [
             ['https://www.sheypoor.com/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/%DA%A9%D8%B3%D8%A8-%DA%A9%D8%A7%D8%B1',$this->config['baseUrl']."/".'0503acb8e8'],
             ['https://www.sheypoor.com/%DA%A9%D9%BE%D8%B3%D9%88%D9%84-%D9%BE%DB%8C%DA%A9%D9%86%DB%8C%DA%A9-52836998.html',$this->config['baseUrl']."/".'7a3c06e576'],
@@ -57,12 +58,12 @@ class ShortUrlTest extends TestCase
 
     public function testInsertShortCodeInDataBase($url, $hash) :void
     {
-
         $this->assertEquals($hash, $this->shortUrl->insertShortCodeInDataBase($url));
     }
 
 
-    public function getUrlDataProvider() :array {
+    public function getUrlDataProvider() :array
+    {
         return [
             ['https://www.sheypoor.com/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/%DA%A9%D8%B3%D8%A8-%DA%A9%D8%A7%D8%B1','0503acb8e8'],
             ['https://www.sheypoor.com/%DA%A9%D9%BE%D8%B3%D9%88%D9%84-%D9%BE%DB%8C%DA%A9%D9%86%DB%8C%DA%A9-52836998.html','7a3c06e576'],
@@ -83,7 +84,8 @@ class ShortUrlTest extends TestCase
         $this->assertEquals($url, $this->shortUrl->getUrl($hash));
     }
 
-    public function hashDataProvider() :array {
+    public function hashDataProvider() :array
+    {
         return [
             ['0503acb8e8',0],
             ['7a3c06e576',0],
@@ -93,7 +95,6 @@ class ShortUrlTest extends TestCase
         ];
     }
 
-
     /**
      * @dataProvider hashDataProvider
      * @param $hash
@@ -101,8 +102,6 @@ class ShortUrlTest extends TestCase
      */
     public function testGetHashStats($hash, $exception) :void
     {
-
-        $this->assertEquals($exception,$this->shortUrl->getHashStats($hash));
+        $this->assertEquals($exception, $this->shortUrl->getHashStats($hash));
     }
-
 }

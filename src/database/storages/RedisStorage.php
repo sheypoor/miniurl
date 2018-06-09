@@ -14,13 +14,11 @@ class RedisStorage implements StorageInterface
     {
         $this->baseUrl = $config['baseUrl'];
         $this->client = $client;
-
     }
 
     public function store(string $hash, string $url) :string
     {
         if (empty($this->checkHash($hash))) {
-
             $this->client->hmset($hash, [
                 'url' => $url,
                 'shortedUrl'=> $this->baseUrl."/".$hash,
@@ -41,11 +39,14 @@ class RedisStorage implements StorageInterface
         // TODO: Implement update() method.
     }
 
-    public function incCount(string $hash) :void
+    public function incCount(string $hash) : ?string
     {
+        if (empty($this->checkHash($hash))) {
+            return 'Hash Does NOT Exist';
+        }
         $this->client->hincrby($hash, 'count', 1);
+        return null;
     }
-
 
     public function getUrlByHash(string $hash) : ?string
     {

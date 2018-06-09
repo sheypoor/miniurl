@@ -9,5 +9,4 @@ interface StorageInterface
     public function incCount(string $hash);
     public function getUrlByHash(string $hash);
     public function checkHash(string $hash);
-
 }
